@@ -8,21 +8,23 @@ import { FavoriteComponent } from './pages/private/favorite/favorite.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MaterialModule } from './modules/material/material.module';
+import { HomeComponent } from './pages/private/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     FavoriteComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
