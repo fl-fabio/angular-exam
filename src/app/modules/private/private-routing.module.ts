@@ -10,9 +10,11 @@ const privateRoutes: Routes = [
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HomeComponent
+  ],
   imports: [
-    RouterModule.forRoot(privateRoutes)
+    RouterModule.forChild(privateRoutes)
   ],
   exports: [RouterModule]
 })

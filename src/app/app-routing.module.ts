@@ -3,7 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: "",
+    path:"",
+    redirectTo:"login",
+    pathMatch:"full"
+  },
+  {
+    path: "login",
     loadChildren: () =>
         import("../app/modules/public/public.module").then((m) => m.PublicModule),
   },
