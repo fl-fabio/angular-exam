@@ -11,7 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     PublicRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PublicRoutingModule
   ],
   exports: [
     LoginComponent

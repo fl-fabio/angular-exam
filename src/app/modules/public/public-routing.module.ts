@@ -16,7 +16,6 @@ const publicRoutes: Routes = [
 
 @NgModule({
   declarations: [
-   
   ],
   imports: [
     RouterModule.forChild(publicRoutes)

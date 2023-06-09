@@ -1,1 +1,29 @@
-<p>home works!</p>
+<div class="container-fluid px-0">
+  <div class="section-background">
+    <div class="text-white d-flex justify-content-center align-items-center flex-column h-100">
+      <h1 class="section-title">Marvel Characters</h1>
+      <p class="text-center">Get hooked on a hearty helping of heroes and villains from the humble House of Ideas!</p>
+    </div>
+  </div>
+  <div>
+    <h2 class="title">Characters</h2>
+  </div>
+  <div class="col-md-10 d-flex flex-wrap justify-content-center align-items-start m-auto">
+    <ng-container *ngIf="characters; else noCharacters">
+      <ng-container *ngFor="let character of characters">
+        <app-character-card [character]="character"></app-character-card>
+      </ng-container>
+    </ng-container>
+  </div>
+  <mat-paginator
+              [length]="lengthResources"
+              [pageSize]="size"
+              [pageSizeOptions]="[10, 25, 100]"
+              aria-label="Select page"
+              (page)="onPageChange($event)">
+  </mat-paginator>
+</div>
+
+<ng-template #noCharacters>
+  <p>no characters</p>
+</ng-template>
