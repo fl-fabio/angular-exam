@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PagenotfoundComponent } from './pages/public/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
     loadChildren: () =>
         import("../app/modules/private/private.module").then((m) => m.PrivateModule),
   },
+  {
+    path: "**",
+    component: PagenotfoundComponent
+  }
 ];
 
 @NgModule({
