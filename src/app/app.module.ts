@@ -8,12 +8,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material/material.module';
+import { HeroComponent } from './pages/public/hero/hero.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FavoriteComponent,
-    NavbarComponent
+    NavbarComponent,
+    HeroComponent
   ],
   imports: [
     BrowserModule,
