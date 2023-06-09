@@ -32,13 +32,18 @@ export class LoginComponent implements OnInit {
 
   onSubmit = (form: any) => {
     this.submitted = true;
-    const email = form.value.email;
-    const password = form.value.password;
-    console.log(email + '' + password);
-    if (this.loginForm.valid) 
-      if (this.authService.login(email, password)) {
-        this.router.navigate(['home']);
-      } else {alert ('Invalid username or password')}
-  }
+    if (this.loginForm.valid) {
+      const email = form.value.email;
+      const password = form.value.password;
+
+      const isAuthenticated = this.authService.login(email, password);
+      if(isAuthenticated)
+          this.router.navigate(['home']);
+      else 
+          alert('Invalid username or password');
+    }
+    }
+
 
 }
+
