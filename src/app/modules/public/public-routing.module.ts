@@ -11,7 +11,6 @@ const publicRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    LoginComponent
   ],
   imports: [
     RouterModule.forChild(publicRoutes)
