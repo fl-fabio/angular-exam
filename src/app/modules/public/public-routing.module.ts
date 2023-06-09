@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HeroComponent } from 'src/app/pages/public/hero/hero.component';
 import { LoginComponent } from 'src/app/pages/public/login/login.component';
 
 const publicRoutes: Routes = [
   {
-    path: "",
+    path: "login",
     component: LoginComponent
-  }
+  },
+  {
+    path: "hero",
+    component: HeroComponent
+  },
 ]
 
 @NgModule({
   declarations: [
-    LoginComponent
+   
   ],
   imports: [
     RouterModule.forChild(publicRoutes)
