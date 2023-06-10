@@ -62,3 +62,10 @@ export interface Character {
   };
   urls: Url[];
 }
+
+export interface CharacterRimap {
+  id: number;
+  name: string;
+  description: string;
+  thumbnail: string;
+}

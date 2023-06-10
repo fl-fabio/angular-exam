@@ -1,11 +1,13 @@
-<div class="container-card m-3" *ngIf="character; else noData">
-  <div class="container-image">
-    <img class="image" [src]="character.thumbnail.path +'.'+ character.thumbnail.extension" alt="noImage">
+<ng-container *ngIf="character; else noData">
+  <div (click)="goDetails(character.id)" class="container-card m-3">
+    <div class="container-image">
+      <img class="image" [src]="character.thumbnail" alt="noImage">
+    </div>
+    <div class="container-name-card">
+      <h5 class="name-card">{{character && character.name}}</h5>
+    </div>
   </div>
-  <div class="container-name-card">
-    <h5 class="name-card">{{character && character.name}}</h5>
-  </div>
-</div>
+</ng-container>
 
 <ng-template #noData>
   <p>No data</p>

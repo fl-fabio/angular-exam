@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { Character } from '../models/Character';
 
 @Injectable({
   providedIn: 'root'
@@ -10,5 +11,5 @@ export class CharactersService {
   http = inject(HttpClient);
   constructor() { }
 
-  getAllCharacters = (params?:{ limit:number, offset:number }) => this.http.get(`https://gateway.marvel.com/v1/public/characters?apikey=${this.apiKey}&hash=${this.clientId}&ts=1`, { params })
+  getAllCharacters = (params:{ limit?:number, offset?:number, nameStartsWith?:string }) => this.http.get<Character[]>(`https://gateway.marvel.com/v1/public/characters?apikey=${this.apiKey}&hash=${this.clientId}&ts=1`, { params })
 }
