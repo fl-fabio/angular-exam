@@ -1,0 +1,52 @@
+.button-outside {
+  display: block;
+  color: #fff;
+  background-color: #e62429;
+  transition: none;
+  text-align: center;
+  padding: 0 35px;
+
+  .button-inside {
+    position: relative;
+  }
+
+  .button-inside::before,
+  .button-inside::after {
+    border-style: solid;
+    border-width: 0 0 16px 16px;
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    position: absolute;
+  }
+
+  .button-inside::before {
+    left: 0;
+    top: 0;
+  }
+
+  .button-inside::after {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+  }
+}
+
+.button-outside::before,
+.button-outside::after {
+  background-color: #e62429;
+  border-color: #e62429;
+  transition: none;
+}
+
+.button-outside::before {
+  border-width: 0 0 16px 16px;
+  margin-left: 16px;
+  top: 0;
+}
+
+.button-outside::after {
+  border-width: 16px 16px 0 0;
+  bottom: 0;
+  margin-right: 16px;
+}

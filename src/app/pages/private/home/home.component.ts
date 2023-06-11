@@ -1,28 +1,31 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { delay, map, take, takeUntil, tap } from 'rxjs';
+import { debounceTime, delay, map, take, takeUntil, tap } from 'rxjs';
 import { Character, CharacterRimap } from 'src/app/models/Character';
 import { CharactersService } from 'src/app/services/characters.service';
 import { data } from 'src/app/mock/data';
 import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  charactersService = inject(CharactersService);
+  router = inject(Router);
+  loadingService = inject(LoadingService);
   characters:CharacterRimap[] | undefined = undefined;
   lengthResources:number | undefined = undefined;
   size = 10;
   offset = 0;
   currentPage = 0;
   filterForName = "";
-  charactersService = inject(CharactersService);
-  router = inject(Router);
+  loading = this.loadingService.loading$;
 
   ngOnInit(): void {
-    this.characters = data
-    /* this.fetchCharacters(); */
+    /* this.characters = data */
+    this.fetchCharacters();
   }
 
   fetchCharacters() {
@@ -43,7 +46,7 @@ export class HomeComponent implements OnInit {
             thumbnail: elem.thumbnail.path + '.' + elem.thumbnail.extension
           }))
         ),
-        delay(1000),
+        /* debounceTime(1000), */
         take(this.size)
       )
       .subscribe({

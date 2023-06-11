@@ -10,14 +10,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LoadingService } from './services/loading.service';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { ButtonComponent } from './components/button/button.component';
+/* import { LoaderComponent } from './components/loader/loader.component'; */
 
 @NgModule({
   declarations: [
     AppComponent,
     FavoriteComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+   /*  LoaderComponent */
   ],
   imports: [
     BrowserModule,
@@ -27,9 +32,19 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    /* LoadingService, */
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    }
+  ],
+  /* exports:[
+    TitleComponent
+  ], */
   bootstrap: [AppComponent],
 })
 export class AppModule { }

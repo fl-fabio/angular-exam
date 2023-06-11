@@ -1,0 +1,159 @@
+.artboard {
+  width: 800px;
+  height: 600px;
+  /* background: #085195;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 3px; */
+  margin: 50px auto;
+  border: 20px white solid;
+  position: relative;
+}
+.circles {
+  width: 350px;
+  height: 350px;
+  position: absolute;
+  left: 200px;
+  top: 100px;
+}
+.circle-border {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  border: 8px solid white;
+  position: absolute;
+  overflow: hidden;
+}
+
+.circle-1 {
+  width: 350px;
+  height: 350px;
+  background: #eb0606;
+  border-radius: 50%;
+  border: 8px solid #244356;
+  position: absolute;
+  overflow: hidden;
+}
+.shadow {
+  width: 340px;
+  height: 340px;
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0px 0px 62px rgba(0, 0, 0, 0.4);
+  left: -23px;
+  top: -1px;
+}
+.circle-2 {
+  width: 280px;
+  height: 280px;
+  background: #f3f3f3;
+  border-radius: 50%;
+  border: 8px solid #244356;
+  position: absolute;
+  top: 27px;
+  left: 27px;
+}
+.circle-3 {
+  width: 215px;
+  height: 215px;
+  background: #eb0606;
+  border-radius: 50%;
+  border: 8px solid #244356;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}
+.circle-4 {
+  width: 140px;
+  height: 140px;
+  background: #1c5ac4;
+  border-radius: 50%;
+  border: 8px solid #244356;
+  position: absolute;
+  top: 28px;
+  left: 28px;
+}
+.star {
+  margin: 25px 0;
+  position: absolute;
+  display: block;
+  color: #f33;
+  width: 0px;
+  height: 0px;
+  border-right: 50px solid transparent;
+  border-bottom: 35px solid #fcf9fa;
+  border-left: 50px solid transparent;
+  -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
+  top: 16px;
+  left: 13px;
+  animation-name: spinnerRotate;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -webkit-animation-name: spinnerRotate;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: spinnerRotate;
+  -moz-animation-duration: 3s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: spinnerRotate;
+  -ms-animation-duration: 3s;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+}
+.star:before {
+  border-bottom: 40px solid #fcf9fa;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  position: absolute;
+  height: 0;
+  width: 0;
+  top: -23px;
+  left: -32px;
+  display: block;
+  content: "";
+  -webkit-transform: rotate(-35deg);
+  transform: rotate(-35deg);
+}
+.star:after {
+  position: absolute;
+  display: block;
+  color: #ff004e;
+  top: 3px;
+  left: -52px;
+  width: 0px;
+  height: 0px;
+  border-right: 50px solid transparent;
+  border-bottom: 35px solid #fcf9fa;
+  border-left: 50px solid transparent;
+  -webkit-transform: rotate(-70deg);
+  transform: rotate(-70deg);
+  content: "";
+}
+
+@keyframes spinnerRotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinnerRotate {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-ms-keyframes spinnerRotate {
+  from {
+    -ms-transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+  }
+}
