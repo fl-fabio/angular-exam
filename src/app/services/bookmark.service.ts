@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { AuthService } from './auth.service';
 import { User } from '../models/Users';
+import { Observable, map} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,10 @@ export class BookmarkService {
 
   constructor() {}
 
-  addBookmarkToUser = (id: string): void => {
+  addBookmarkToUser = (id: string): boolean => {
     const currentIdUser = sessionStorage.getItem('currentUser');
+    let isBookmarkAdded = false;
+
     this.authService.getByUser(currentIdUser!).subscribe({
       next: (currentUser) => {
         if (currentUser) {
@@ -21,6 +24,7 @@ export class BookmarkService {
           if (!user.bookmarks.includes(id)) {
             // Aggiungi l'ID all'array bookmarks
             user.bookmarks.push(id);
+            isBookmarkAdded = true;
           }
 
           // Update the user's bookmarks using AuthService's updateUser method
@@ -43,5 +47,20 @@ export class BookmarkService {
         console.error("Error while updating the user's bookmarks:", error);
       },
     });
+
+    return isBookmarkAdded;
+  };
+
+  getAllBookmarksbyUser = (): Observable<Array<string>> => {
+    const currentIdUser = sessionStorage.getItem('currentUser');
+    return this.authService.getByUser(currentIdUser!).pipe(
+      map((currentUser) => {
+        if (currentUser) {
+          return currentUser.bookmarks as Array<string>;
+        } else {
+          return [];
+        }
+      })
+    );
   };
 }

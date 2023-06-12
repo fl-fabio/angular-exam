@@ -6,6 +6,7 @@ import { map, take } from 'rxjs';
 import { CharactersService } from 'src/app/services/characters.service';
 import { Character, CharacterRimap } from 'src/app/models/Character';
 import { LoadingService } from 'src/app/services/loading.service';
+import {ToastrService} from 'ngx-toastr'
 
 @Component({
   selector: 'app-details',
@@ -21,6 +22,8 @@ export class DetailsComponent implements OnInit {
   route = inject(Router);
   charactersService = inject(CharactersService);
   loadingService = inject(LoadingService);
+  toastr = inject(ToastrService)
+  bookmarkAdded: boolean = false;
   character:CharacterRimap | undefined = undefined;
   loading = this.loadingService.loading$;
 
@@ -75,7 +78,11 @@ export class DetailsComponent implements OnInit {
   }
 
   onAddBookmark = () => {
-    console.log(this.id);
-    this.bookmarkService.addBookmarkToUser(this.id);
+    this.bookmarkAdded = this.bookmarkService.addBookmarkToUser(this.id);
+    this.bookmarkService.getAllBookmarksbyUser().subscribe((bookmarks) => {
+      console.log(bookmarks);
+    });
+    if (this.bookmarkAdded) this.toastr.success('Bookmark added');
+    else this.toastr.error('Bookmark already present');
   }
 }
