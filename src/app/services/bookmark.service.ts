@@ -63,4 +63,18 @@ export class BookmarkService {
       })
     );
   };
+
+  checkBookmarkExistsPerUser = ( bookmarkId: string): Observable<boolean> => {
+    const currentIdUser = sessionStorage.getItem('currentUser');
+    return this.authService.getByUser(currentIdUser as string).pipe(
+      map((currentUser) => {
+        if (currentUser && currentUser.bookmarks) {
+          return currentUser.bookmarks.includes(bookmarkId);
+        }
+        return false;
+      })
+    );
+  };
+
+
 }

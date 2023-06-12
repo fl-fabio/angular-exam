@@ -26,6 +26,7 @@ export class DetailsComponent implements OnInit {
   bookmarkAdded: boolean = false;
   character:CharacterRimap | undefined = undefined;
   loading = this.loadingService.loading$;
+  added: boolean = false;
 
   ngOnInit() {
     this.scrollUp();
@@ -39,6 +40,9 @@ export class DetailsComponent implements OnInit {
         this.id = params['id'];
     })
     this.fetchOneCharacter();
+    this.bookmarkService.checkBookmarkExistsPerUser(this.id).subscribe((bookmarked) => {
+      this.added = bookmarked;
+    })
   }
 
   fetchOneCharacter() {
@@ -82,6 +86,7 @@ export class DetailsComponent implements OnInit {
     this.bookmarkService.getAllBookmarksbyUser().subscribe((bookmarks) => {
       console.log(bookmarks);
     });
+
     if (this.bookmarkAdded) this.toastr.success('Bookmark added');
     else this.toastr.error('Bookmark already present');
   }
