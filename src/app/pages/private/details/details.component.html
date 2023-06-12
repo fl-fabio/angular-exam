@@ -10,7 +10,8 @@
     <div class="col-10 col-md-6 p-3">
       <h2>{{ name || 'no name available' }}</h2>
       <p>{{ description || 'no description available' }}</p>
-      <app-button [name]="'add'"></app-button>
+<!--       <app-button [name]="'add'"></app-button> -->
+      <button class="btn btn-outline-success" (click)="onAddBookmark()">Add to favorites</button>
     </div>
   </div>
 </div>

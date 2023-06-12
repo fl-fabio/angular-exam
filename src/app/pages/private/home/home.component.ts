@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { debounceTime, delay, map, take, tap } from 'rxjs';
+import { debounceTime, delay, distinctUntilChanged, map, take, tap } from 'rxjs';
 import { Character, CharacterRimap } from 'src/app/models/Character';
 import { CharactersService } from 'src/app/services/characters.service';
 import { data } from 'src/app/mock/data';
@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
     })
       .pipe(
         debounceTime(2000),
+        distinctUntilChanged(),
         tap((response: any) => {
           this.paginationService.setLengthResources(response.data.total);
         }),
@@ -106,7 +107,17 @@ export class HomeComponent implements OnInit {
   }
 
   searchForName(event: Event) {
-    this.paginationService.setFilterForName((<HTMLInputElement>event.target).value);
-    this.fetchCharacters();
+    const searchValue = (<HTMLInputElement>event.target).value;
+    this.paginationService.setFilterForName(searchValue);
+    
+    // Utilizza l'operatore debounceTime per attendere 3 secondi dopo l'ultima digitazione
+    this.paginationService.filterForName.pipe(
+      debounceTime(2000),
+      distinctUntilChanged(),
+      tap(() => {
+        // Effettua la chiamata API solo dopo 3 secondi dall'ultima digitazione
+        this.fetchCharacters();
+      })
+    ).subscribe();
   }
 }

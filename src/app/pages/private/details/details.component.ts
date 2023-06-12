@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { BookmarkService } from 'src/app/services/bookmark.service';
 
 @Component({
   selector: 'app-details',
@@ -8,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
+  bookmarkService = inject(BookmarkService);
+
   id = '';
   name = '';
   description = '';
@@ -29,5 +32,10 @@ export class DetailsComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  onAddBookmark = () => {
+    console.log(this.id);
+    this.bookmarkService.addBookmarkToUser(this.id);
   }
 }

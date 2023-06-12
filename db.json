@@ -6,6 +6,20 @@
       "password": "Markus2023",
       "email": "marco@gmail.com",
       "role": "",
+      "bookmarks": [
+        "1017100",
+        "1010903",
+        "1010699",
+        "1017851",
+        "1009144"
+      ]
+    },
+    {
+      "id": "Simone",
+      "name": "Simone Gennaro",
+      "password": "Simone2023",
+      "email": "simone@gmail.com",
+      "role": "",
       "isActive": true,
       "bookmarks": []
     }

@@ -26,7 +26,10 @@ export class AuthService {
 
   getByUser = (userName: string): Observable<User | undefined> => {
     return this.getAll().pipe(
-      map((users: Users) => users.find((user: User) => user.id === userName)),
+      map((users: Users) => {
+        return users.find((user: User) => 
+          user.id === userName)
+      }),
       first()
     );
   };
@@ -36,7 +39,7 @@ export class AuthService {
   };
 
   updateUser = (code: any, inputData: any) => {
-    return this.http.put(this.apiURL + '/' + code, inputData);
+    return this.http.patch(this.apiURL + '/' + code, inputData);
   };
 
   IsLoggedIn = () => {
