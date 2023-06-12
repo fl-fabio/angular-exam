@@ -1,6 +1,49 @@
+.navbar {
+  background-color: #202020;
+  min-height: 100px;
+  .logo {
+    width: 120px;
+  }
+
+  .menu-icon {
+    width: 20px;
+  }
+
+  .nav-link {
+    text-transform: uppercase;
+  }
+  .nav-link:hover {
+    cursor: pointer;
+  }
+
+}
+
+.offcanvas {
+  background-color: #202020;
+}
+
 .bg-custom{
     background-color: blue;
 }
 .white{
     color: white;
 }
+
+@media screen and (min-width: 992px) {
+  .navbar {
+    position: relative;
+    .container-logo {
+      border-bottom: 1px solid gray;
+      .logo {
+        width: 150px;
+      }
+    }
+  }
+
+  .container-user {
+    position: absolute;
+    right: 30px;
+  }
+}
+
+

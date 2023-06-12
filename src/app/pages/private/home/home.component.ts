@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    /* this.characters = data */
+    this.characters = data
     this.getFilterForName();
     this.getLengthResource();
     this.fetchCharacters();

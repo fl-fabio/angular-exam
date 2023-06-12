@@ -16,15 +16,18 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { ButtonComponent } from './components/button/button.component';
 import {ToastrModule} from 'ngx-toastr';
 import { RegisterComponent } from './pages/public/register/register.component';
+import { TitleComponent } from './components/title/title.component';
+import { CharacterCardComponent } from './components/character-card/character-card.component';
 /* import { LoaderComponent } from './components/loader/loader.component'; */
 
 @NgModule({
   declarations: [
     AppComponent,
-    FavoriteComponent,
     NavbarComponent,
     FooterComponent,
     RegisterComponent,
+   /*  TitleComponent,
+    CharacterCardComponent */
    /*  LoaderComponent */
   ],
   imports: [
@@ -46,9 +49,10 @@ import { RegisterComponent } from './pages/public/register/register.component';
       multi: true
     }
   ],
-  /* exports:[
-    TitleComponent
-  ], */
+  exports:[
+    /* TitleComponent,
+    CharacterCardComponent */
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
