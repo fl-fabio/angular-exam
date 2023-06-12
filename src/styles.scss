@@ -1,4 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: "Chakra-Petch-Regular" }
+
+@font-face {
+  font-family: 'Chakra-Petch-Regular';
+  src: url('./assets/fonts/ChakraPetch-Regular.woff');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Chakra-Petch-Medium';
+  src: url('./assets/fonts/ChakraPetch-Medium.woff');
+  font-weight: 500;
+}

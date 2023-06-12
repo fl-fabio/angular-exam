@@ -87,6 +87,9 @@ export class DetailsComponent implements OnInit {
         else this.toastr.error('Bookmark already present');
       });
   };
+    /* this.bookmarkService.getAllBookmarksbyUser().subscribe((bookmarks) => {
+      console.log(bookmarks);
+    }); */
 
   onDeleteBookmark = () => {
     this.bookmarkService

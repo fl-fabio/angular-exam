@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { AuthService } from './auth.service';
 import { User } from '../models/Users';
-import { Observable, delay, map } from 'rxjs';
+import { Observable, map, take} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,12 +13,12 @@ export class BookmarkService {
 
   addBookmarkToUser = (id: string): Observable<boolean> => {
     const currentIdUser = sessionStorage.getItem('currentUser');
-  
+
     return this.authService.getByUser(currentIdUser!).pipe(
       map((currentUser) => {
         if (currentUser) {
           const user = currentUser;
-  
+
           // Verify id
           if (!user.bookmarks.includes(id)) {
             user.bookmarks.push(id);
@@ -68,7 +68,7 @@ export class BookmarkService {
     );
   };
 
-  getAllBookmarksbyUser = (): Observable<Array<string>> => {
+  getAllBookmarksbyUser = () => {
     const currentIdUser = sessionStorage.getItem('currentUser');
     return this.authService.getByUser(currentIdUser!).pipe(
       map((currentUser) => {
@@ -77,8 +77,9 @@ export class BookmarkService {
         } else {
           return [];
         }
-      })
-    );
+      }),
+      take(1),
+    ).toPromise();
   };
 
   checkBookmarkExistsPerUser = (bookmarkId: string): Observable<boolean> => {
