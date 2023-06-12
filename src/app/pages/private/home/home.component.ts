@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { debounceTime, delay, distinctUntilChanged, map, take, tap } from 'rxjs';
+import { debounceTime, delay, distinctUntilChanged, map, switchMap, take, tap } from 'rxjs';
 import { Character, CharacterRimap } from 'src/app/models/Character';
 import { CharactersService } from 'src/app/services/characters.service';
 import { data } from 'src/app/mock/data';
@@ -41,8 +41,8 @@ export class HomeComponent implements OnInit {
       ...(this.filterForName ? { nameStartsWith: this.filterForName } : {}),
     })
       .pipe(
-        debounceTime(2000),
-        distinctUntilChanged(),
+        debounceTime(1000),
+        /* delay(1000), */
         tap((response: any) => {
           this.paginationService.setLengthResources(response.data.total);
         }),
@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
             thumbnail: elem.thumbnail.path + '.' + elem.thumbnail.extension
           }))
         ),
-        take(this.pagination!.size)
+        take(1)
       )
       .subscribe({
         next: (res: CharacterRimap[]) => {
@@ -109,7 +109,7 @@ export class HomeComponent implements OnInit {
   searchForName(event: Event) {
     const searchValue = (<HTMLInputElement>event.target).value;
     this.paginationService.setFilterForName(searchValue);
-    
+
     // Utilizza l'operatore debounceTime per attendere 3 secondi dopo l'ultima digitazione
     this.paginationService.filterForName.pipe(
       debounceTime(2000),

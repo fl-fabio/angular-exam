@@ -16,6 +16,6 @@ export class CharacterCardComponent implements OnInit {
   }
 
   goDetails(id:number) {
-    this.router.navigate(["/home", id], { queryParams: this.character });
+    this.router.navigate(["/home", id]);
   }
 }

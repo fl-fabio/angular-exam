@@ -1,7 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
 import { BookmarkService } from 'src/app/services/bookmark.service';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { map, take } from 'rxjs';
+import { CharactersService } from 'src/app/services/characters.service';
+import { Character, CharacterRimap } from 'src/app/models/Character';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-details',
@@ -12,22 +16,58 @@ export class DetailsComponent implements OnInit {
   bookmarkService = inject(BookmarkService);
 
   id = '';
-  name = '';
-  description = '';
-  thumbnail = {};
   location = inject(Location);
-  route = inject(ActivatedRoute);
+  activatedRoute = inject(ActivatedRoute);
+  route = inject(Router);
+  charactersService = inject(CharactersService);
+  loadingService = inject(LoadingService);
+  character:CharacterRimap | undefined = undefined;
+  loading = this.loadingService.loading$;
 
   ngOnInit() {
-    this.id = this.route.snapshot.queryParamMap.get('id') || '';
-    this.name = this.route.snapshot.queryParamMap.get('name') || '';
-    this.description = this.route.snapshot.queryParamMap.get('description') || '';
-    this.thumbnail = this.route.snapshot.queryParamMap.get('thumbnail') || '';
+    this.scrollUp();
 
-    console.log("id",this.id)
-    console.log("name",this.name)
-    console.log("description",this.description)
-    console.log("thumbnail",this.thumbnail)
+    this.id = this.activatedRoute.snapshot.queryParamMap.get('id') || '';
+    this.activatedRoute.params
+      .pipe(
+        take(1)
+      )
+      .subscribe(params => {
+        this.id = params['id'];
+    })
+    this.fetchOneCharacter();
+  }
+
+  fetchOneCharacter() {
+    this.charactersService.getOneCharacter(this.id)
+      .pipe(
+        map((response: any) =>
+          response.data.results.map((elem: Character) => ({
+            id: elem.id,
+            name: elem.name,
+            description: elem.description,
+            thumbnail: elem.thumbnail.path + '.' + elem.thumbnail.extension
+          }))
+        ),
+        take(1)
+      )
+      .subscribe({
+        next: (res: CharacterRimap[]) => {
+          console.log(res);
+          res && (this.character = res[0])
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
+  }
+
+  scrollUp() {
+    this.route.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
   }
 
   goBack(): void {
