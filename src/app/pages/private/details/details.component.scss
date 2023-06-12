@@ -1,7 +1,13 @@
 .image {
   max-height: 300px;
+  border-radius: 5px;
 }
 
-.container-contents {
+.go-back {
+  padding: 0 30px;
+  font-size: 20px;
+}
 
+.go-back:hover {
+  cursor: pointer;
 }

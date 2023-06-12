@@ -1,11 +1,13 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { debounceTime, delay, map, take, takeUntil, tap } from 'rxjs';
+import { debounceTime, delay, map, take, tap } from 'rxjs';
 import { Character, CharacterRimap } from 'src/app/models/Character';
 import { CharactersService } from 'src/app/services/characters.service';
 import { data } from 'src/app/mock/data';
 import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/services/loading.service';
+import { PaginationService } from 'src/app/services/pagination.service';
+import { PaginationCharacters } from 'src/app/models/Pagination';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,28 +17,33 @@ export class HomeComponent implements OnInit {
   charactersService = inject(CharactersService);
   router = inject(Router);
   loadingService = inject(LoadingService);
+  paginationService = inject(PaginationService);
   characters:CharacterRimap[] | undefined = undefined;
-  lengthResources:number | undefined = undefined;
-  size = 10;
-  offset = 0;
-  currentPage = 0;
-  filterForName = "";
   loading = this.loadingService.loading$;
+  lengthResources:number | undefined = undefined;
+  pagination:PaginationCharacters | undefined = undefined
+  filterForName = "";
+
 
   ngOnInit(): void {
     /* this.characters = data */
+    this.getFilterForName();
+    this.getLengthResource();
     this.fetchCharacters();
   }
 
   fetchCharacters() {
+    this.getFilterForName();
+    this.getPagination();
     this.charactersService.getAllCharacters({
-      ...(this.size ? { limit: this.size } : {}),
-      ...(this.offset ? { offset: this.offset } : {}),
+      ...(this.pagination!.size ? { limit: this.pagination!.size } : {}),
+      ...(this.pagination!.offset ? { offset: this.pagination!.offset } : {}),
       ...(this.filterForName ? { nameStartsWith: this.filterForName } : {}),
     })
       .pipe(
+        debounceTime(2000),
         tap((response: any) => {
-          this.lengthResources = response.data.total;
+          this.paginationService.setLengthResources(response.data.total);
         }),
         map((response: any) =>
           response.data.results.map((elem: Character) => ({
@@ -46,13 +53,13 @@ export class HomeComponent implements OnInit {
             thumbnail: elem.thumbnail.path + '.' + elem.thumbnail.extension
           }))
         ),
-        /* debounceTime(1000), */
-        take(this.size)
+        take(this.pagination!.size)
       )
       .subscribe({
         next: (res: CharacterRimap[]) => {
           console.log(res);
-          res && (this.characters = res)
+          res && (this.characters = res),
+          this.getLengthResource();
         },
         error: (error) => {
           console.error(error);
@@ -60,24 +67,46 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  getPagination() {
+    this.paginationService.pagination.subscribe((value) => this.pagination = value)
+  }
+
+  getLengthResource() {
+    this.paginationService.lengthResources.subscribe(value => this.lengthResources = value);
+  }
+
+  getFilterForName() {
+    this.paginationService.filterForName.subscribe(value => this.filterForName = value);
+  }
+
+  clearFilter() {
+    this.paginationService.setFilterForName('');
+    this.fetchCharacters();
+  }
+
   onPageChange(event:PageEvent) {
-    if(this.size === event.pageSize) {
-      if(this.currentPage > event.pageIndex) {
-        this.offset -= this.size;
-        this.currentPage--;
+    if(this.pagination!.size === event.pageSize) {
+      if(this.pagination!.currentPage > event.pageIndex) {
+        this.pagination!.offset -= this.pagination!.size;
+        this.pagination!.currentPage--;
       } else {
-        this.offset += this.size;
-        this.currentPage++;
+        this.pagination!.offset += this.pagination!.size;
+        this.pagination!.currentPage++;
       }
     } else {
-      this.size = event.pageSize;
-      this.currentPage = event.pageIndex
+      this.pagination!.size = event.pageSize;
+      this.pagination!.currentPage = event.pageIndex
     }
+    this.paginationService.setPagination(
+      this.pagination!.size,
+      this.pagination!.offset,
+      this.pagination!.currentPage
+    );
     this.fetchCharacters();
   }
 
   searchForName(event: Event) {
-    this.filterForName = (<HTMLInputElement>event.target).value;
+    this.paginationService.setFilterForName((<HTMLInputElement>event.target).value);
     this.fetchCharacters();
   }
 }

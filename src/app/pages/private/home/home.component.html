@@ -1,36 +1,53 @@
 <div class="container-fluid px-0">
   <div class="section-background">
-    <div class="text-white d-flex justify-content-center align-items-center flex-column h-100">
+    <div
+      class="text-white d-flex justify-content-center align-items-center flex-column h-100"
+    >
       <h1 class="section-title">Marvel Characters</h1>
-      <p class="text-center p-3">Get hooked on a hearty helping of heroes and villains from the humble House of Ideas!</p>
+      <p class="text-center p-3">
+        Get hooked on a hearty helping of heroes and villains from the humble
+        House of Ideas!
+      </p>
     </div>
   </div>
   <div class="d-flex flex-column w-75 m-auto my-3">
-    <!-- <h2 class="title">Characters</h2> -->
     <app-title [title]="'Characters'"></app-title>
     <div class="d-flex search">
-      <img src="../../../../assets/icons/search.svg" alt="search">
-    <input class="" placeholder="search" type="text" (input)="searchForName($event)">
+      <img src="../../../../assets/icons/search.svg" alt="search" />
+      <input
+        [placeholder]="filterForName"
+        type="text"
+        (input)="searchForName($event)"
+      />
+      <span (click)="clearFilter()">Clear</span>
     </div>
   </div>
-  <div class="col-md-10 d-flex flex-wrap justify-content-center align-items-start m-auto">
+  <div
+    class="col-md-10 d-flex flex-wrap justify-content-center align-items-start m-auto container-characters"
+  >
     <ng-container *ngIf="!(loading | async); else loadingComponent">
-      <ng-container *ngFor="let character of characters">
-        <app-character-card [character]="character"></app-character-card>
-      </ng-container>
+      <ng-container *ngIf="characters && characters.length > 0; else noCharacters">
+        <ng-container *ngFor="let character of characters">
+          <app-character-card
+            [character]="character"
+          ></app-character-card> </ng-container
+      ></ng-container>
     </ng-container>
   </div>
   <mat-paginator
-              [length]="lengthResources"
-              [pageSize]="size"
-              [pageSizeOptions]="[10, 25, 100]"
-              aria-label="Select page"
-              (page)="onPageChange($event)">
+    [length]="lengthResources"
+    [pageSize]="pagination!.size"
+    [pageSizeOptions]="[10, 25, 100]"
+    aria-label="Select page"
+    (page)="onPageChange($event)"
+  >
   </mat-paginator>
 </div>
 
 <ng-template #noCharacters>
-  <p>no characters</p>
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <h2>No characters found</h2>
+  </div>
 </ng-template>
 
 <ng-template #loadingComponent>
