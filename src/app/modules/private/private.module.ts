@@ -11,10 +11,12 @@ import { LoadingInterceptor } from 'src/app/interceptors/loading.interceptor';
 import { LoaderComponent } from 'src/app/components/loader/loader.component';
 import { TitleComponent } from 'src/app/components/title/title.component';
 import { ButtonComponent } from 'src/app/components/button/button.component';
+import { FavoriteComponent } from 'src/app/pages/private/favorite/favorite.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
+    FavoriteComponent,
     CharacterCardComponent,
     DetailsComponent,
     LoaderComponent,
@@ -25,7 +27,7 @@ import { ButtonComponent } from 'src/app/components/button/button.component';
     CommonModule,
     PrivateRoutingModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   /* providers: [
     LoadingService,
@@ -39,7 +41,8 @@ import { ButtonComponent } from 'src/app/components/button/button.component';
     HomeComponent,
     CharacterCardComponent,
     DetailsComponent,
-    LoaderComponent
+    LoaderComponent,
+    TitleComponent
   ]
 })
 export class PrivateModule { }
