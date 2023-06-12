@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "id": "Markus",
+      "name": "Marco Borea",
+      "password": "Markus2023",
+      "email": "marco@gmail.com",
+      "role": "",
+      "isActive": true,
+      "bookmarks": []
+    }
+  ]
+}

@@ -8,18 +8,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  router = inject(Router);
-  authService = inject(AuthService);
-  admin: null | string = null
+  currentUser!: string;
 
-  ngOnInit(): void {
-    this.authService.currentUser$.subscribe(user => {
-      this.admin = user;
-    });
-  }
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['']);
+  ngOnInit() {
+    this.currentUser = sessionStorage.getItem('currentUser')!;
   }
 }

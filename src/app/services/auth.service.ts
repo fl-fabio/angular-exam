@@ -1,43 +1,51 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { User, Users } from '../models/Users';
+import { Observable, first, map } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
-  public currentUser$: Observable<string | null> = this.currentUserSubject.asObservable();
+  constructor() {}
 
-  private email: string = 'admin@admin.com';
-  private password: string = 'Bls0906';
-  private user: string | null = null;
-  isAuthenticated: boolean = false;
+  http = inject(HttpClient);
 
-  login = (email: string, password: string): boolean => {
-    const isAuthenticated = this.authenticateUser(email, password);
+  apiURL = 'http://localhost:3000/users';
 
-    if (isAuthenticated) {
-      localStorage.setItem('currentUser', email.split("@")[0]);
-      this.currentUserSubject.next(email.split("@")[0]);
-    }
+  getAll = (): Observable<Users> => {
+    return this.http.get<Users>(this.apiURL);
+  };
 
-    return isAuthenticated;
+  getByEmail = (email: string): Observable<User | undefined> => {
+    return this.getAll().pipe(
+      map((users: Users) => users.find((user: User) => user.email === email)),
+      first()
+    );
+  };
 
-  }
-  logout() {
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
-  }
+  getByUser = (userName: string): Observable<User | undefined> => {
+    return this.getAll().pipe(
+      map((users: Users) => users.find((user: User) => user.id === userName)),
+      first()
+    );
+  };
 
-  private authenticateUser(username: string, password: string): boolean {
-    if(username===this.email && password === this.password) {
-      this.user = this.email.split("@")[0];
-      localStorage.setItem('currentUser', this.user);
-      return true;
-    } 
-    return false;
-  }
+  registerUser = (inputData: any) => {
+    return this.http.post(this.apiURL, inputData);
+  };
 
+  updateUser = (code: any, inputData: any) => {
+    return this.http.put(this.apiURL + '/' + code, inputData);
+  };
 
-  constructor() { }
+  IsLoggedIn = () => {
+    return sessionStorage.getItem('currentUser') != null;
+  };
+
+  GetUserRole = () => {
+    return sessionStorage.getItem('userRole') != null
+      ? sessionStorage.getItem('userRole')?.toString()
+      : '';
+  };
 }

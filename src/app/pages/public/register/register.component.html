@@ -1,0 +1,113 @@
+<section class="vh-100" style="background-color: rgb(45, 45, 45)">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-11">
+          <div class="card" style="border-radius: 1rem">
+            <div class="row g-0">
+              <div class="col-md-7 col-lg-6 d-none d-md-block">
+                <img
+                  src="assets/img/bg-login.png"
+                  alt="login form"
+                  class="img-fluid"
+                  style="border-radius: 1rem 0 0 1rem; height: 100%"
+                />
+              </div>
+              <div class="col-md-5 col-lg-6 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+                  <!--                   <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)"> -->
+                  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="d-flex align-items-center mb-3 pb-1">
+                      <i
+                        class="fas fa-cubes fa-2x me-3"
+                        style="color: #ff6219"
+                      ></i>
+                      <span class="h1 fw-bold mb-0">BLS</span>
+                    </div>
+  
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
+                      Sign up your account
+                    </h5>
+  
+                    <div class="form-outline mb-4">
+                      <label class="form-label">User Name</label>
+                      <input
+                        type="text"
+                        formControlName="id"
+                        class="form-control form-control-lg"
+                        [ngClass] = "{'is-invalid': submitted && (idRequired || idLong)}"
+                      />
+                      <small class="text-danger" *ngIf="submitted && idRequired">
+                        ID required
+                      </small>
+                      <small class="text-danger" *ngIf="submitted && idLong">
+                        ID must be at least 5 characters long
+                      </small>
+                    </div>
+  
+                    <div class="form-outline mb-4">
+                      <label class="form-label">Name</label>
+                      <input
+                        type="text"
+                        formControlName="name"
+                        class="form-control form-control-lg"
+                        [ngClass] = "{'is-invalid': submitted && nameRequired}"
+                      />
+                      <small class="text-danger" *ngIf="submitted && nameRequired">
+                        Name required
+                      </small>
+                    </div>
+  
+                    <div class="form-outline mb-4">
+                      <label class="form-label">Email address</label>
+                      <input
+                        type="email"
+                        formControlName="email"
+                        class="form-control form-control-lg"
+                        [ngClass] = "{'is-invalid': submitted && (emailRequired || emailValid)}"
+                      />
+                      <small class="text-danger" *ngIf="submitted && emailRequired">
+                        Email required
+                      </small>
+                      <small class="text-danger" *ngIf="submitted && emailValid">
+                        Invalid Email, example "email@email.com"
+                      </small>
+                    </div>
+  
+                    <div class="form-outline mb-4">
+                      <label class="form-label">Password</label>
+                      <input
+                        type="password"
+                        formControlName="password"
+                        class="form-control form-control-lg"
+                        [ngClass] = "{'is-invalid': submitted && (passwordRequired || passwordValid || passwordLong)}"
+                      />
+                      <small class="text-danger" *ngIf="submitted && passwordRequired">
+                        Password required
+                      </small>
+                      <small class="text-danger" *ngIf="submitted && passwordLong && !passwordValid">
+                        Password must be at least 6 characters long
+                      </small>
+                      <small class="text-danger" *ngIf="submitted && passwordValid">
+                        Invalid password, it should contain at least one uppercase letter, one lowercase letter, and one number 
+                      </small>
+                    </div>
+  
+                    <div class="pt-1 mb-4">
+                      <button class="btn btn-dark btn-lg btn-block" type="submit">
+                        Register
+                      </button>
+                    </div>
+                    <p class="mb-5 pb-lg-2" style="color: #393f81">
+                      You have an account?
+                      <a href="#!" style="color: #393f81" routerLink="/login">Sign in here</a>
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

@@ -14,6 +14,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoadingService } from './services/loading.service';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { ButtonComponent } from './components/button/button.component';
+import {ToastrModule} from 'ngx-toastr';
+import { RegisterComponent } from './pages/public/register/register.component';
 /* import { LoaderComponent } from './components/loader/loader.component'; */
 
 @NgModule({
@@ -22,6 +24,7 @@ import { ButtonComponent } from './components/button/button.component';
     FavoriteComponent,
     NavbarComponent,
     FooterComponent,
+    RegisterComponent,
    /*  LoaderComponent */
   ],
   imports: [
@@ -32,7 +35,8 @@ import { ButtonComponent } from './components/button/button.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     /* LoadingService, */
