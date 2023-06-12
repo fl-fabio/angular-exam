@@ -2,16 +2,16 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { map, take } from 'rxjs';
+import { delay, map, take } from 'rxjs';
 import { CharactersService } from 'src/app/services/characters.service';
 import { Character, CharacterRimap } from 'src/app/models/Character';
 import { LoadingService } from 'src/app/services/loading.service';
-import {ToastrService} from 'ngx-toastr'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+  styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
   bookmarkService = inject(BookmarkService);
@@ -22,38 +22,36 @@ export class DetailsComponent implements OnInit {
   route = inject(Router);
   charactersService = inject(CharactersService);
   loadingService = inject(LoadingService);
-  toastr = inject(ToastrService)
-  bookmarkAdded: boolean = false;
-  character:CharacterRimap | undefined = undefined;
+  toastr = inject(ToastrService);
+  bookmarkPresent: boolean = false;
+  character: CharacterRimap | undefined = undefined;
   loading = this.loadingService.loading$;
-  added: boolean = false;
 
   ngOnInit() {
     this.scrollUp();
 
     this.id = this.activatedRoute.snapshot.queryParamMap.get('id') || '';
-    this.activatedRoute.params
-      .pipe(
-        take(1)
-      )
-      .subscribe(params => {
-        this.id = params['id'];
-    })
+    this.activatedRoute.params.pipe(take(1)).subscribe((params) => {
+      this.id = params['id'];
+    });
     this.fetchOneCharacter();
-    this.bookmarkService.checkBookmarkExistsPerUser(this.id).subscribe((bookmarked) => {
-      this.added = bookmarked;
-    })
+    this.bookmarkService
+      .checkBookmarkExistsPerUser(this.id)
+      .subscribe((bookmarked) => {
+        this.bookmarkPresent = bookmarked;
+      });
   }
 
   fetchOneCharacter() {
-    this.charactersService.getOneCharacter(this.id)
+    this.charactersService
+      .getOneCharacter(this.id)
       .pipe(
         map((response: any) =>
           response.data.results.map((elem: Character) => ({
             id: elem.id,
             name: elem.name,
             description: elem.description,
-            thumbnail: elem.thumbnail.path + '.' + elem.thumbnail.extension
+            thumbnail: elem.thumbnail.path + '.' + elem.thumbnail.extension,
           }))
         ),
         take(1)
@@ -61,16 +59,16 @@ export class DetailsComponent implements OnInit {
       .subscribe({
         next: (res: CharacterRimap[]) => {
           console.log(res);
-          res && (this.character = res[0])
+          res && (this.character = res[0]);
         },
         error: (error) => {
           console.error(error);
-        }
+        },
       });
   }
 
   scrollUp() {
-    this.route.events.subscribe(event => {
+    this.route.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         window.scrollTo(0, 0);
       }
@@ -82,12 +80,21 @@ export class DetailsComponent implements OnInit {
   }
 
   onAddBookmark = () => {
-    this.bookmarkAdded = this.bookmarkService.addBookmarkToUser(this.id);
-    this.bookmarkService.getAllBookmarksbyUser().subscribe((bookmarks) => {
-      console.log(bookmarks);
-    });
+      this.bookmarkService.addBookmarkToUser(this.id).subscribe((added) => {
+        this.bookmarkPresent = true;
+        console.log('added', added);
+        if (added) this.toastr.success('Bookmark added');
+        else this.toastr.error('Bookmark already present');
+      });
+  };
 
-    if (this.bookmarkAdded) this.toastr.success('Bookmark added');
-    else this.toastr.error('Bookmark already present');
-  }
+  onDeleteBookmark = () => {
+    this.bookmarkService
+      .removeBookmarkToUser(this.id)
+      .subscribe((removed) => {
+        this.bookmarkPresent = false;
+        if (removed) this.toastr.success('Bookmark removed');
+        else this.toastr.error('Bookmark already not present');
+      });
+  };
 }

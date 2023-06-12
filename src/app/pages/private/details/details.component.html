@@ -13,7 +13,8 @@
       <div class="col-10 col-md-6 p-3">
         <h2>{{ character?.name || "no name available" }}</h2>
         <p>{{ character?.description || "no description available" }}</p>
-        <button class="btn btn-outline-success" [disabled]="added" (click)="onAddBookmark()">Add to favorites</button>
+        <button class="btn btn-outline-success" [disabled]="bookmarkPresent" (click)="onAddBookmark()">Add to favorites</button>
+        <button class="btn btn-outline-danger" [disabled]="!bookmarkPresent" (click)="onDeleteBookmark()">Remove to favorites</button>
       </div>
     </div>
   </ng-container>
