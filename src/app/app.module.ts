@@ -11,12 +11,9 @@ import { MaterialModule } from './modules/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { LoadingService } from './services/loading.service';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
-import { ButtonComponent } from './components/button/button.component';
-import {ToastrModule, provideToastr} from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { RegisterComponent } from './pages/public/register/register.component';
-/* import { LoaderComponent } from './components/loader/loader.component'; */
 
 @NgModule({
   declarations: [
@@ -24,8 +21,6 @@ import { RegisterComponent } from './pages/public/register/register.component';
     NavbarComponent,
     FooterComponent,
     RegisterComponent,
-    /* ButtonComponent */
-   /*  LoaderComponent */
   ],
   imports: [
     BrowserModule,

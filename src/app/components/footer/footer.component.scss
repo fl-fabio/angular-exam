@@ -24,4 +24,16 @@
     font-size: 12px;
     padding: 3px;
   }
+
+  .fa-brands {
+    padding: 5px;
+    color: #4c4c4c;
+    font-size: x-large;
+    transition: all .3s ease;
+  }
+
+  .fa-brands:hover {
+    cursor: pointer;
+    color: #fff;
+  }
 }

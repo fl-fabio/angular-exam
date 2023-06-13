@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { User, Users } from '../models/Users';
-import { Observable, first, map } from 'rxjs';
+import { Observable, first, map, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -27,10 +27,11 @@ export class AuthService {
   getByUser = (userName: string): Observable<User | undefined> => {
     return this.getAll().pipe(
       map((users: Users) => {
-        return users.find((user: User) => 
+        return users.find((user: User) =>
           user.id === userName)
       }),
-      first()
+      first(),
+      take(1)
     );
   };
 

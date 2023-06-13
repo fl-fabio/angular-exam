@@ -1,9 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Subject, debounceTime, delay, distinctUntilChanged, map, switchMap, take, tap } from 'rxjs';
+import { Subject, debounceTime, map, take, tap } from 'rxjs';
 import { Character, CharacterRimap } from 'src/app/models/Character';
 import { CharactersService } from 'src/app/services/characters.service';
-import { data } from 'src/app/mock/data';
 import { NavigationEnd, Router } from '@angular/router';
 import { LoadingService } from 'src/app/services/loading.service';
 import { PaginationService } from 'src/app/services/pagination.service';
@@ -27,7 +26,6 @@ export class HomeComponent implements OnInit {
   private searchSubject = new Subject<string>();
 
   ngOnInit(): void {
-    this.characters = data
     this.getFilterForName();
     this.getLengthResource();
     this.fetchCharacters();

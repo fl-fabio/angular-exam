@@ -16,3 +16,21 @@
 .go-back:hover {
   cursor: pointer;
 }
+
+.button-custom {
+  padding: 15px 30px;
+  border: none;
+  color: #fff;
+  background-color: #ee171f;
+  text-transform: uppercase;
+  transition: all .3s ease;
+}
+
+.button-custom:hover {
+  cursor: pointer;
+  background-color: #d9040b;
+}
+
+.button-custom:active {
+  transform:translateY(5px);
+}

@@ -82,7 +82,7 @@ export class BookmarkService {
     ).toPromise();
   };
 
-  checkBookmarkExistsPerUser = (bookmarkId: string)/* : Observable<boolean>  */=> {
+  checkBookmarkExistsPerUser = (bookmarkId: string): Observable<boolean> => {
     const currentIdUser = sessionStorage.getItem('currentUser');
     return this.authService.getByUser(currentIdUser as string).pipe(
       map((currentUser) => {
@@ -90,7 +90,8 @@ export class BookmarkService {
           return currentUser.bookmarks.includes(bookmarkId);
         }
         return false;
-      })
-    ).toPromise();
+      }),
+      take(1)
+    )
   };
 }
