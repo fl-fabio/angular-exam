@@ -1,6 +1,116 @@
-.bg-custom{
-    background-color: blue;
-}
-.white{
-    color: white;
-}
+/* Navbar */
+.navbar {
+    font-family: "Arial", sans-serif;
+    margin-bottom: 30px;
+    margin-bottom: 0;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Brand */
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  .navbar-logo {
+    display: none;
+    justify-content: center;
+    background-color: #212529;
+    flex: 1;
+    img {
+      width: 8rem;
+    }
+  }
+  
+  .logo-out {
+    display: flex;
+    border-bottom: 0.3px white solid;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  /* Menu links */
+  .navbar-nav .nav-link {
+    font-size: 18px;
+    margin-left: 20px;
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .offcanvas-body {
+    flex-grow: 0;
+  }
+  
+  /* Active link */
+  .navbar-nav .nav-link.active {
+    color: #fff;
+    background-color: #ee171f;
+    border-radius: 20px;
+  }
+  
+  .btn-logout {
+    color: #fff;
+    background-color: #ee171f;
+    border-radius: 20px;
+  }
+  
+  @media (max-width: 991px) {
+    /* Logo centrato */
+    .navbar-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0;
+      margin-left: 1rem;
+    }
+  
+    .navbar-brand {
+      display: none;
+    }
+  
+    .logo-out {
+      display: none;
+      margin: none;
+    }
+  
+    .information,
+    .offcanvas-header {
+      padding: var(--bs-offcanvas-padding-y) var(--bs-offcanvas-padding-x);
+      overflow-y: auto;
+      margin-top: 1rem;
+    }
+
+    .btn-close {
+        margin-bottom: 1rem;
+    }
+  }
+  
+  @media (min-width: 991px) {
+    .navbar-expand-lg .navbar-collapse {
+      justify-content: flex-start;
+    }
+  
+    .navbar-brand,
+    .offcanvas-body,
+    .information {
+      display: flex;
+      align-items: center;
+    }
+  
+    .offcanvas-body {
+      margin-left: 20px;
+    }
+  
+    .information {
+      flex-grow: 1;
+      margin-left: 5rem;
+    }
+  }
+  
+  

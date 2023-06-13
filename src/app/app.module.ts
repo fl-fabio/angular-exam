@@ -14,7 +14,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoadingService } from './services/loading.service';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { ButtonComponent } from './components/button/button.component';
-import {ToastrModule} from 'ngx-toastr';
+import {ToastrModule, provideToastr} from 'ngx-toastr';
 import { RegisterComponent } from './pages/public/register/register.component';
 /* import { LoaderComponent } from './components/loader/loader.component'; */
 
@@ -36,7 +36,11 @@ import { RegisterComponent } from './pages/public/register/register.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    })
   ],
   providers: [
     /* LoadingService, */
@@ -44,7 +48,7 @@ import { RegisterComponent } from './pages/public/register/register.component';
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
       multi: true
-    }
+    },
   ],
   /* exports:[
     TitleComponent
