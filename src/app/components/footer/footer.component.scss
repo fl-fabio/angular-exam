@@ -1,9 +1,27 @@
-.white{
-    color: white;
-}
+.container-footer {
+  font-family: 'Chakra-Petch-Regular';
+  font-weight: 400;
+  background-color: #151515;
+  color: #fff;
+  min-height: 200px;
+  text-transform: uppercase;
 
-.bg-custom{
-    background-color: black;
-    padding: 3rem;
-    padding-top: 0.4rem;
+  .section-footer {
+    min-height: 100px;
+  }
+
+  .link-footer:hover {
+    cursor: pointer;
+  }
+
+  .logo {
+    width: 200px;
+  }
+
+  .word-copyright {
+    display: inline-block;
+    color: #767676;
+    font-size: 12px;
+    padding: 3px;
+  }
 }

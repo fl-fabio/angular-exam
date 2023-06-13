@@ -24,6 +24,7 @@ import { RegisterComponent } from './pages/public/register/register.component';
     NavbarComponent,
     FooterComponent,
     RegisterComponent,
+    /* ButtonComponent */
    /*  LoaderComponent */
   ],
   imports: [
@@ -50,7 +51,7 @@ import { RegisterComponent } from './pages/public/register/register.component';
     },
   ],
   /* exports:[
-    TitleComponent
+    ButtonComponent
   ], */
   bootstrap: [AppComponent],
 })

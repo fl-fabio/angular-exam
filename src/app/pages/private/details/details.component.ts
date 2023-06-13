@@ -22,7 +22,7 @@ export class DetailsComponent implements OnInit {
   loadingService = inject(LoadingService);
   toastr = inject(ToastrService);
   id = '';
-  bookmarkPresent: boolean = false;
+ /*  bookmarkPresent: boolean = false; */
   character: CharacterRimap | undefined = undefined;
   loading = this.loadingService.loading$;
 
@@ -34,11 +34,11 @@ export class DetailsComponent implements OnInit {
       this.id = params['id'];
     });
     this.fetchOneCharacter();
-    this.bookmarkService
+    /* this.bookmarkService
       .checkBookmarkExistsPerUser(this.id)
       .subscribe((bookmarked) => {
         this.bookmarkPresent = bookmarked;
-      });
+      }); */
   }
 
   fetchOneCharacter() {
@@ -66,7 +66,7 @@ export class DetailsComponent implements OnInit {
     this.location.back();
   }
 
-  onAddBookmark = () => {
+  /* onAddBookmark = () => {
       this.bookmarkService.addBookmarkToUser(this.id).subscribe((added) => {
         this.bookmarkPresent = true;
         console.log('added', added);
@@ -74,9 +74,6 @@ export class DetailsComponent implements OnInit {
         else this.toastr.error('Bookmark already present');
       });
   };
-    /* this.bookmarkService.getAllBookmarksbyUser().subscribe((bookmarks) => {
-      console.log(bookmarks);
-    }); */
 
   onDeleteBookmark = () => {
     this.bookmarkService
@@ -86,5 +83,5 @@ export class DetailsComponent implements OnInit {
         if (removed) this.toastr.success('Bookmark removed');
         else this.toastr.error('Bookmark already not present');
       });
-  };
+  }; */
 }

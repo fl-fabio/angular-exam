@@ -24,9 +24,7 @@ export class HomeComponent implements OnInit {
   lengthResources:number | undefined = undefined;
   pagination:PaginationCharacters | undefined = undefined
   filterForName = "";
-
   private searchSubject = new Subject<string>();
-
 
   ngOnInit(): void {
     this.characters = data
@@ -35,7 +33,7 @@ export class HomeComponent implements OnInit {
     this.fetchCharacters();
 
     this.searchSubject
-      .pipe(debounceTime(1000))
+      .pipe(debounceTime(500))
       .subscribe(() => {
         this.fetchCharacters();
       });

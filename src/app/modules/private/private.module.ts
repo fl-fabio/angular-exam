@@ -22,6 +22,7 @@ import { FavoriteComponent } from 'src/app/pages/private/favorite/favorite.compo
     LoaderComponent,
     TitleComponent,
     ButtonComponent
+   /*  ButtonComponent */
   ],
   imports: [
     CommonModule,

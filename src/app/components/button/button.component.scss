@@ -1,115 +1,17 @@
-.container-button {
-  max-width: 300px;
-
-  .button-outside {
-
-
-  }
-
-  .button-outside, .button-inside {
-    background-color: #e62429;
-    border-color: #e62429;
-    border: none;
-    height: 20px;
-  }
-
-  .button-inside {
-    color: #fff;
-    text-align: center;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  .btn-top::before {
-    content: "";
-    border-color: transparent #fff transparent transparent;
-    border-style: solid;
-    border-width: 12px 12px 0 0;
-    bottom: 0;
-    position: absolute;
-    right: 0;
-    top: auto;
-    z-index: 40;
-  }
-}
-
-
-
-
-/* .container-button {
-  background-color: transparent;
-    border-radius: 0;
-    border: none;
-    box-sizing: border-box;
-    cursor: pointer;
-    font-weight: 700;
-    margin: 15px auto;
-    overflow: hidden;
-    padding: 0;
-    position: relative;
-    letter-spacing: 0;
-    width: auto;
-    z-index: 10;
-}
-
-.container-button::before, .container-button::after {
-  background-color: #e62429;
-  border-color: #e62429;
-  transition: none;
-  border-style: solid;
-  box-sizing: border-box;
-  content: "";
-  display: block;
-  height: 16px;
-}
-
-.container-button::before {
-  border-width: 0 0 16px 16px;
-  margin-left: 16px;
-}
-
-.container-button::after {
-  border-width: 16px 16px 0 0;
-  bottom: 0;
-  margin-right: 16px;
-}
-
-.button-outside {
+.button-custom {
+  padding: 15px 30px;
+  border: none;
   color: #fff;
-  background-color: #e62429;
-  transition: none;
-  text-align: center;
-  display: block;
-  padding: 0 35px;
+  background-color: #ee171f;
   text-transform: uppercase;
+  transition: all .3s ease;
 }
 
-.button-outside::before, .button-outside::after {
-  border-color: #e62429 transparent;
-    transition: none;
+.button-custom:hover {
+  cursor: pointer;
+  background-color: #d9040b;
 }
 
-.button-outside::after {
-  border-color: transparent;
-  border-style: solid;
-  border-width: 0 0 16px 16px;
-  box-sizing: border-box;
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0;
-    right: 0;
-    transform: rotate(180deg);
+.button-custom:active {
+  transform:translateY(5px);
 }
-
-.button-outside::before {
-  border-style: solid;
-    border-width: 0 0 16px 16px;
-    box-sizing: border-box;
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-} */
-

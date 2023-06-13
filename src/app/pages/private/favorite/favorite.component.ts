@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { CharacterRimap } from 'src/app/models/Character';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { CharactersService } from 'src/app/services/characters.service';
@@ -13,12 +14,14 @@ export class FavoriteComponent implements OnInit {
   serviceBookmarks = inject(BookmarkService);
   serviceCharacters = inject(CharactersService);
   loadingService = inject(LoadingService);
+  route = inject(Router);
   idArray:string[] = [];
   favoritesCharacters:CharacterRimap[] = [];
   loading = this.loadingService.loading$;
 
   ngOnInit(): void {
     this.fetchId();
+    this.scrollUp();
   }
 
   fetchId = async () => {
@@ -43,5 +46,13 @@ export class FavoriteComponent implements OnInit {
           },
       })
     })
+  }
+
+  scrollUp() {
+    this.route.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
   }
 }
