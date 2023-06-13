@@ -9,6 +9,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .navbar-toggler {
+      position: absolute;
+    }
   }
 
   /* Brand */
@@ -40,15 +43,13 @@
   /* Menu links */
   .navbar-nav .nav-link {
     font-size: 16px;
-    margin-left: 20px;
     padding: 0.5rem 0.8rem;
-    font-family: 'Chakra-Petch-Medium';
-    font-weight: 500;
+    font-family: 'Chakra-Petch-Bold';
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
   }
 
-  .offcanvas-body {
-    flex-grow: 0;
-  }
 
   /* Active link */
   .navbar-nav .nav-link.active {
@@ -63,13 +64,16 @@
     border-radius: 20px;
   }
 
+  .offcanvas {
+    flex-grow: 0;
+  }
+
   @media (max-width: 991px) {
     /* Logo centrato */
     .navbar-logo {
       display: flex;
       justify-content: center;
       margin-bottom: 0;
-      margin-left: 1rem;
     }
 
     .navbar-brand {
@@ -81,19 +85,29 @@
       margin: none;
     }
 
-    .information,
-    .offcanvas-header {
-      padding: var(--bs-offcanvas-padding-y) var(--bs-offcanvas-padding-x);
+    .information {
+      display: none;
+    }
+    .offcanvas-header{
+      padding: 1.3rem;
       overflow-y: auto;
       margin-top: 1rem;
+    }
+
+    .information-inner {
+      margin-top: 2rem;
     }
 
     .btn-close {
         margin-bottom: 1rem;
     }
+
+    ul {
+      margin-left: 1.2rem;
+    }
   }
 
-  @media (min-width: 991px) {
+  @media (min-width: 992px) {
     .navbar-expand-lg .navbar-collapse {
       justify-content: flex-start;
     }
@@ -105,13 +119,14 @@
       align-items: center;
     }
 
+    .information-inner {
+      display: none;
+    }
+
     .offcanvas-body {
       margin-left: 20px;
     }
 
-    .information {
-      flex-grow: 1;
-      margin-left: 5rem;
-    }
+
   }
 

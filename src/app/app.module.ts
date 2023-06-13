@@ -32,7 +32,7 @@ import { RegisterComponent } from './pages/public/register/register.component';
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut: 10000,
+      timeOut: 5000,
       positionClass: 'toast-top-center',
       preventDuplicates: true,
     })
