@@ -12,7 +12,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     this.loadingService.setLoading(true);
 
     return next.handle(req).pipe(
-      /* debounceTime(2000), */
+      delay(1000),
       tap(
         event => {
           if (event instanceof HttpResponse) {

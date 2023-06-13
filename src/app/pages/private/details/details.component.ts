@@ -2,9 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { BookmarkService } from 'src/app/services/bookmark.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { delay, map, take } from 'rxjs';
+import { debounceTime, delay, take } from 'rxjs';
 import { CharactersService } from 'src/app/services/characters.service';
-import { Character, CharacterRimap } from 'src/app/models/Character';
+import { CharacterRimap } from 'src/app/models/Character';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,14 +15,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DetailsComponent implements OnInit {
   bookmarkService = inject(BookmarkService);
-
-  id = '';
   location = inject(Location);
   activatedRoute = inject(ActivatedRoute);
   route = inject(Router);
   charactersService = inject(CharactersService);
   loadingService = inject(LoadingService);
   toastr = inject(ToastrService);
+  id = '';
   bookmarkPresent: boolean = false;
   character: CharacterRimap | undefined = undefined;
   loading = this.loadingService.loading$;
@@ -45,20 +44,8 @@ export class DetailsComponent implements OnInit {
   fetchOneCharacter() {
     this.charactersService
       .getOneCharacter(this.id)
-      .pipe(
-        map((response: any) =>
-          response.data.results.map((elem: Character) => ({
-            id: elem.id,
-            name: elem.name,
-            description: elem.description,
-            thumbnail: elem.thumbnail.path + '.' + elem.thumbnail.extension,
-          }))
-        ),
-        take(1)
-      )
       .subscribe({
         next: (res: CharacterRimap[]) => {
-          console.log(res);
           res && (this.character = res[0]);
         },
         error: (error) => {

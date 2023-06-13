@@ -29,10 +29,24 @@
     width: 100%;
     border: none;
   }
+  .clear:hover {
+    cursor: pointer;
+  }
 }
 
 ::placeholder {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 18px;
+}
+
+@media screen and (min-width:992px) {
+  .section-background {
+    .section-title {
+      font-size: 72px;
+    }
+    .section-paragraph {
+      font-size: 18px;
+    }
+  }
 }

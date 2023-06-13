@@ -1,7 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: "Chakra-Petch-Regular" }
+body { margin: 0; font-family: 'Chakra-Petch-Medium'; font-weight: 500;}
+
+.mat-typography,
+.mat-typography h1,
+.mat-typography h2,
+.mat-typography h5 {
+  font-family: 'Chakra-Petch-Bold'; font-weight: 700;
+}
 
 @font-face {
   font-family: 'Chakra-Petch-Regular';
@@ -13,4 +20,10 @@ body { margin: 0; font-family: "Chakra-Petch-Regular" }
   font-family: 'Chakra-Petch-Medium';
   src: url('./assets/fonts/ChakraPetch-Medium.woff');
   font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Chakra-Petch-Bold';
+  src: url('./assets/fonts/ChakraPetch-Bold.woff');
+  font-weight: 700;
 }

@@ -1,5 +1,31 @@
 <div class="container-favorites">
-  <ng-container *ngFor="let character of idArray">
-    <p>{{character}}</p>
-  </ng-container>
+  <div class="d-flex justify-content-center">
+    <app-title [title]="'Favorites'"></app-title>
+  </div>
+  <div
+    class="col-md-10 d-flex flex-wrap justify-content-center align-items-start m-auto"
+  >
+    <ng-container *ngIf="!(loading | async); else loadingComponent">
+      <ng-container
+        *ngIf="
+          favoritesCharacters && favoritesCharacters.length > 0;
+          else noCharacters
+        "
+      >
+        <ng-container *ngFor="let character of favoritesCharacters">
+          <app-character-card [character]="character"></app-character-card>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
 </div>
+
+<ng-template #noCharacters>
+  <h2>No data</h2>
+</ng-template>
+
+<ng-template #loadingComponent>
+  <div class="h-100">
+    <app-loader></app-loader>
+  </div>
+</ng-template>

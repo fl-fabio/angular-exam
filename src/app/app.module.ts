@@ -21,7 +21,6 @@ import { RegisterComponent } from './pages/public/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
-    FavoriteComponent,
     NavbarComponent,
     FooterComponent,
     RegisterComponent,

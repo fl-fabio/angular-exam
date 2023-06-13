@@ -58,7 +58,7 @@ export class LoginComponent {
                   `User ${this.userData.id} logged with SuccessFully`
                 );
                 sessionStorage.setItem('currentUser', this.userData.id);
-                this.router.navigate(['home']);
+                this.router.navigate(['characters']);
               } else {
                 this.toastr.error('Please contact admin', 'Inactive User');
               }

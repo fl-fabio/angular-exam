@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TitleComponent } from 'src/app/components/title/title.component';
 import { AuthGuard } from 'src/app/guard/auth.guard';
 import { DetailsComponent } from 'src/app/pages/private/details/details.component';
 import { FavoriteComponent } from 'src/app/pages/private/favorite/favorite.component';
@@ -33,7 +34,6 @@ const privateRoutes: Routes = [
   ],
   exports: [
     RouterModule,
-
   ]
 })
 export class PrivateRoutingModule { }

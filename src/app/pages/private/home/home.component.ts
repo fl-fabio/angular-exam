@@ -1,10 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { debounceTime, delay, distinctUntilChanged, map, switchMap, take, tap } from 'rxjs';
+import { Subject, debounceTime, delay, distinctUntilChanged, map, switchMap, take, tap } from 'rxjs';
 import { Character, CharacterRimap } from 'src/app/models/Character';
 import { CharactersService } from 'src/app/services/characters.service';
 import { data } from 'src/app/mock/data';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { LoadingService } from 'src/app/services/loading.service';
 import { PaginationService } from 'src/app/services/pagination.service';
 import { PaginationCharacters } from 'src/app/models/Pagination';
@@ -18,18 +18,27 @@ export class HomeComponent implements OnInit {
   router = inject(Router);
   loadingService = inject(LoadingService);
   paginationService = inject(PaginationService);
+  route = inject(Router);
   characters:CharacterRimap[] | undefined = undefined;
   loading = this.loadingService.loading$;
   lengthResources:number | undefined = undefined;
   pagination:PaginationCharacters | undefined = undefined
   filterForName = "";
 
+  private searchSubject = new Subject<string>();
+
 
   ngOnInit(): void {
-    /* this.characters = data */
+    this.characters = data
     this.getFilterForName();
     this.getLengthResource();
     this.fetchCharacters();
+
+    this.searchSubject
+      .pipe(debounceTime(1000))
+      .subscribe(() => {
+        this.fetchCharacters();
+      });
   }
 
   fetchCharacters() {
@@ -58,7 +67,7 @@ export class HomeComponent implements OnInit {
       )
       .subscribe({
         next: (res: CharacterRimap[]) => {
-          console.log(res);
+          console.log("chiama");
           res && (this.characters = res),
           this.getLengthResource();
         },
@@ -103,21 +112,21 @@ export class HomeComponent implements OnInit {
       this.pagination!.offset,
       this.pagination!.currentPage
     );
+    this.scrollUp();
     this.fetchCharacters();
   }
 
   searchForName(event: Event) {
-    const searchValue = (<HTMLInputElement>event.target).value;
-    this.paginationService.setFilterForName(searchValue);
+    const searchTerm = (<HTMLInputElement>event.target).value;
+    this.paginationService.setFilterForName(searchTerm);
+    this.searchSubject.next(searchTerm);
+  }
 
-    // Utilizza l'operatore debounceTime per attendere 3 secondi dopo l'ultima digitazione
-    this.paginationService.filterForName.pipe(
-      debounceTime(2000),
-      distinctUntilChanged(),
-      tap(() => {
-        // Effettua la chiamata API solo dopo 3 secondi dall'ultima digitazione
-        this.fetchCharacters();
-      })
-    ).subscribe();
+  scrollUp() {
+    this.route.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
   }
 }

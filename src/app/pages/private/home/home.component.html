@@ -3,11 +3,13 @@
     <div
       class="text-white d-flex justify-content-center align-items-center flex-column h-100"
     >
+    <div class="p-3">
       <h1 class="section-title">Marvel Characters</h1>
-      <p class="text-center p-3">
+      <p class="text-center section-paragraph">
         Get hooked on a hearty helping of heroes and villains from the humble
         House of Ideas!
       </p>
+    </div>
     </div>
   </div>
   <div class="d-flex flex-column w-75 m-auto my-3">
@@ -19,7 +21,7 @@
         type="text"
         (input)="searchForName($event)"
       />
-      <span (click)="clearFilter()">Clear</span>
+      <span class="clear" (click)="clearFilter()">Clear</span>
     </div>
   </div>
   <div
