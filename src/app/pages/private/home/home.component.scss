@@ -25,12 +25,20 @@
   border-bottom: 2px solid #151515;
   width: 100%;
   padding: 10px;
+  i {
+    font-size: 18px;
+    padding-right: 20px;
+  }
   input {
     width: 100%;
     border: none;
+    padding: 3px;
+    outline: none;
+    font-size: 24px;
   }
   .clear:hover {
     cursor: pointer;
+    text-decoration: underline;
   }
 }
 
@@ -50,3 +58,6 @@
     }
   }
 }
+
+
+

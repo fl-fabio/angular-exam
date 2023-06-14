@@ -34,6 +34,10 @@
     }
   }
 
+  .navbar-logo:hover {
+    cursor: pointer;
+  }
+
   .logo-out {
     display: flex;
     border-bottom: 0.3px rgb(191, 189, 189) solid;
@@ -116,7 +120,7 @@
     .navbar-expand-lg .navbar-collapse {
       justify-content: flex-start;
     }
-    
+
     li {
       margin: 0 .8rem;
     }

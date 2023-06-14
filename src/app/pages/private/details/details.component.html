@@ -2,10 +2,10 @@
   <div class="d-flex justify-content-center">
     <app-title title="Details"></app-title>
   </div>
-  <span class="go-back" (click)="goBack()">Go Back</span>
+  <span class="go-back" (click)="goBack()"><i class="fa-solid fa-chevron-left " style="color: #000000;"></i>Go Back</span>
   <ng-container *ngIf="!(loading | async); else loadingComponent">
     <div
-      class="d-flex flex-column justify-content-evenly flex-md-row align-items-center my-4 my-md-0 container-details"
+      class="m-auto col-10 col-lg-8 d-flex flex-column justify-content-evenly flex-md-row align-items-center my-4 my-md-0 container-details"
     >
       <div>
         <img [src]="character?.thumbnail" alt="thumbnail" class="image" />

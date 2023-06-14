@@ -8,21 +8,20 @@ import { HomeComponent } from 'src/app/pages/private/home/home.component';
 
 const privateRoutes: Routes = [
   {
-    path: "",
+    path: "characters",
     component: HomeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "characters/:id",
+    component: DetailsComponent,
     canActivate: [AuthGuard]
   },
   {
     path: "favorites",
     component: FavoriteComponent,
     canActivate: [AuthGuard]
-  },
-  {
-    path: ":id",
-    component: DetailsComponent,
-    canActivate: [AuthGuard]
   }
-
 ]
 
 @NgModule({

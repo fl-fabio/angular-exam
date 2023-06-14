@@ -78,6 +78,17 @@ export class BookmarkService {
     );
   };
 
+  clearAllBookmark = () => {
+    const currentIdUser = sessionStorage.getItem('currentUser');
+    this.authService.getByUser(currentIdUser!)
+      .pipe(
+        map(currentUser =>
+          currentUser && currentUser.bookmarks.splice(0, currentUser.bookmarks.length),
+          take(1)
+        )
+      ).toPromise()
+  }
+
   getAllBookmarksbyUser = () => {
     const currentIdUser = sessionStorage.getItem('currentUser');
     return this.authService

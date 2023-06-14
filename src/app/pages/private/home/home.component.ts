@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Subject, debounceTime, map, take, tap } from 'rxjs';
 import { Character, CharacterRimap } from 'src/app/models/Character';
@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   lengthResources:number | undefined = undefined;
   pagination:PaginationCharacters | undefined = undefined
   filterForName = "";
+  @ViewChild('myInput', { static: false }) myInput!: ElementRef;
   private searchSubject = new Subject<string>();
 
   ngOnInit(): void {
@@ -63,7 +64,6 @@ export class HomeComponent implements OnInit {
       )
       .subscribe({
         next: (res: CharacterRimap[]) => {
-          console.log("chiama");
           res && (this.characters = res),
           this.getLengthResource();
         },
@@ -86,6 +86,7 @@ export class HomeComponent implements OnInit {
   }
 
   clearFilter() {
+    this.myInput.nativeElement.value = '';
     this.paginationService.setFilterForName('');
     this.fetchCharacters();
   }

@@ -1,4 +1,4 @@
-<div class="navbar-logo logo-out">
+<div class="navbar-logo logo-out" routerLink="/characters">
   <img src="assets/img/logo-marvel.png" alt="Logo Marvel" />
 </div>
 
@@ -48,14 +48,14 @@
                 <a class="nav-link" routerLink="/hero" routerLinkActive="active">Hero</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="characters/favorites" routerLinkActive="active">Favorites</a>
+                <a class="nav-link" routerLink="favorites" routerLinkActive="active">Favorites</a>
               </li>
             </div>
             <div class="information-inner">
               <span class="text-white px-2">Ciao {{ currentUser }}</span>
               <button class="btn btn-logout" routerLink="/login">Log Out</button>
             </div>
-  
+
           </ul>
         </div>
       </div>

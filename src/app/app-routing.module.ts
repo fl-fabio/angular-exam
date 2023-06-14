@@ -14,7 +14,7 @@ const routes: Routes = [
         import("../app/modules/public/public.module").then((m) => m.PublicModule),
   },
   {
-    path: "characters",
+    path: "",
     loadChildren: () =>
         import("../app/modules/private/private.module").then((m) => m.PrivateModule),
   },
