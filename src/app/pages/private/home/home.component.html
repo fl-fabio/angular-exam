@@ -17,7 +17,7 @@
     <div class="d-flex align-items-center search">
       <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
       <input
-        ([ngModel])="filterForName"
+        (input)="filterForName"
         type="text"
         (input)="searchForName($event)"
         #myInput
