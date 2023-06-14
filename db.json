@@ -33,6 +33,15 @@
       "bookmarks": [
         "1009144"
       ]
+    },
+    {
+      "id": "Mirko",
+      "name": "Mirko Greco",
+      "password": "Mirko2023",
+      "email": "mirko@gmail.com",
+      "role": "",
+      "isActive": true,
+      "bookmarks": []
     }
   ]
 }

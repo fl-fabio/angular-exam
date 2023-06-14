@@ -38,16 +38,12 @@ import { RegisterComponent } from './pages/public/register/register.component';
     })
   ],
   providers: [
-    /* LoadingService, */
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
       multi: true
     },
   ],
-  /* exports:[
-    ButtonComponent
-  ], */
   bootstrap: [AppComponent],
 })
 export class AppModule { }
