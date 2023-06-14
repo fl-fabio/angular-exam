@@ -26,7 +26,6 @@ export class FavoriteComponent implements OnInit {
     this.fetchId();
     this.scrollUp();
     this.bookmarkDeleted = sessionStorage.getItem('bookmarkDeleted') === 'true' ? true: false;
-    console.log(this.bookmarkDeleted);
     this.serviceBookmarks
       .checkallBookmarkPerUser()
       .subscribe((bookmarked) => {

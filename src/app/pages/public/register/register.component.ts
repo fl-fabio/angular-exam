@@ -95,7 +95,5 @@ export class RegisterComponent {
     this.passwordRequired = this.registerForm.get('password')?.hasError('required')!;
     this.passwordLong = this.registerForm.get('password')?.hasError('minlength')!;
     this.passwordValid = this.registerForm.get('password')?.hasError('pattern')!;
-    console.log(this.registerForm.get('password'))
-    console.log(this.passwordRequired)
   }
 }

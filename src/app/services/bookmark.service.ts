@@ -22,7 +22,6 @@ export class BookmarkService {
           // Verify id
           if (!user.bookmarks.includes(id)) {
             user.bookmarks.push(id);
-            console.log(user.bookmarks);
             this.authService
               .updateUser(currentIdUser, { bookmarks: user.bookmarks })
               .subscribe({
@@ -56,7 +55,6 @@ export class BookmarkService {
           if (user.bookmarks.includes(id)) {
             //delete bookmark by bookmarks
             user.bookmarks.splice(user.bookmarks.indexOf(id), 1);
-            console.log(user.bookmarks);
             this.authService
               .updateUser(currentIdUser, { bookmarks: user.bookmarks })
               .subscribe({
@@ -118,7 +116,6 @@ export class BookmarkService {
           if (user.bookmarks) {
             //delete bookmark by bookmarks
             user.bookmarks = [];
-            console.log('user', user.bookmarks);
             this.authService
               .updateUser(currentIdUser, { bookmarks: user.bookmarks })
               .subscribe({
