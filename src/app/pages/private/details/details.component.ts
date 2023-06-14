@@ -69,7 +69,6 @@ export class DetailsComponent implements OnInit {
   onAddBookmark = () => {
       this.bookmarkService.addBookmarkToUser(this.id).subscribe((added) => {
         this.bookmarkPresent = true;
-        console.log('added', added);
         if (added) this.toastr.success('Bookmark added');
         else this.toastr.error('Bookmark already present');
       });

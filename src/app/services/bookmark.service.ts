@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { AuthService } from './auth.service';
 import { User } from '../models/Users';
-import { Observable, map, take} from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +23,16 @@ export class BookmarkService {
           if (!user.bookmarks.includes(id)) {
             user.bookmarks.push(id);
             console.log(user.bookmarks);
-            this.authService.updateUser(currentIdUser, { bookmarks: user.bookmarks }).subscribe({
-              error: (error) => {
-                console.error("Errore durante l'aggiornamento dei segnalibri dell'utente:", error);
-              },
-            });
+            this.authService
+              .updateUser(currentIdUser, { bookmarks: user.bookmarks })
+              .subscribe({
+                error: (error) => {
+                  console.error(
+                    "Errore durante l'aggiornamento dei segnalibri dell'utente:",
+                    error
+                  );
+                },
+              });
             return true;
           } else {
             return false;
@@ -44,19 +49,24 @@ export class BookmarkService {
 
     return this.authService.getByUser(currentIdUser!).pipe(
       map((currentUser) => {
-        if(currentUser) {
+        if (currentUser) {
           const user = currentUser;
 
           // Verify id
-          if(user.bookmarks.includes(id)) {
+          if (user.bookmarks.includes(id)) {
             //delete bookmark by bookmarks
-            user.bookmarks.splice(user.bookmarks.indexOf(id),1);
+            user.bookmarks.splice(user.bookmarks.indexOf(id), 1);
             console.log(user.bookmarks);
-            this.authService.updateUser(currentIdUser, { bookmarks: user.bookmarks }).subscribe({
-              error: (error) => {
-                console.error("Errore durante l'aggiornamento dei segnalibri dell'utente:", error);
-              },
-            });
+            this.authService
+              .updateUser(currentIdUser, { bookmarks: user.bookmarks })
+              .subscribe({
+                error: (error) => {
+                  console.error(
+                    "Errore durante l'aggiornamento dei segnalibri dell'utente:",
+                    error
+                  );
+                },
+              });
             return true;
           } else {
             return false;
@@ -70,16 +80,53 @@ export class BookmarkService {
 
   getAllBookmarksbyUser = () => {
     const currentIdUser = sessionStorage.getItem('currentUser');
+    return this.authService
+      .getByUser(currentIdUser!)
+      .pipe(
+        map((currentUser) => {
+          if (currentUser) {
+            return currentUser.bookmarks as Array<string>;
+          } else {
+            return [];
+          }
+        }),
+        take(1)
+      )
+      .toPromise();
+  };
+
+  remevoAllBookmarksbyUser = () => {
+    const currentIdUser = sessionStorage.getItem('currentUser');
+
     return this.authService.getByUser(currentIdUser!).pipe(
       map((currentUser) => {
         if (currentUser) {
-          return currentUser.bookmarks as Array<string>;
+          const user = currentUser;
+
+          // Verify bookmarks
+          if (user.bookmarks) {
+            //delete bookmark by bookmarks
+            user.bookmarks = [];
+            console.log('user', user.bookmarks);
+            this.authService
+              .updateUser(currentIdUser, { bookmarks: user.bookmarks })
+              .subscribe({
+                error: (error) => {
+                  console.error(
+                    "Errore durante l'aggiornamento dei segnalibri dell'utente:",
+                    error
+                  );
+                },
+              });
+            return true;
+          } else {
+            return false;
+          }
         } else {
-          return [];
+          return false; // False if currentUser is not defined
         }
-      }),
-      take(1),
-    ).toPromise();
+      })
+    );
   };
 
   checkBookmarkExistsPerUser = (bookmarkId: string): Observable<boolean> => {
@@ -92,6 +139,19 @@ export class BookmarkService {
         return false;
       }),
       take(1)
-    )
+    );
+  };
+
+  checkallBookmarkPerUser = (): Observable<boolean> => {
+    const currentIdUser = sessionStorage.getItem('currentUser');
+    return this.authService.getByUser(currentIdUser as string).pipe(
+      map((currentUser) => {
+        if (currentUser && currentUser.bookmarks.length === 0) {
+          return true;
+        }
+        return false;
+      }),
+      take(1)
+    );
   };
 }
