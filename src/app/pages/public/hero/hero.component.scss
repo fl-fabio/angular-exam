@@ -1,20 +1,23 @@
 .section-background {
-    &.img1{
+    &.img1 {
         background-image: url("../../../../assets/img/hero-page.jpg");
     }
-    &.img2{
+
+    &.img2 {
         background-image: url("../../../../assets/img/captainamerica.jpg");
     }
+
     height: 400px;
     background-position: center;
     background-repeat: no-repeat;
+
     .section-title {
-      text-align: center;
-      line-height: 60px;
-      font-size: 48px;
-      letter-spacing: 1px;
+        text-align: center;
+        line-height: 60px;
+        font-size: 48px;
+        letter-spacing: 1px;
     }
-  }
+}
 
 .hero-row {
     justify-content: space-between;
@@ -22,9 +25,11 @@
 
 .hero-row__text-left {
     padding: 2rem 0 0 5rem;
+
     h1 {
         text-transform: uppercase;
     }
+
     p {
         font-family: 'Chakra-Petch-Regular';
         font-weight: 400;
@@ -33,9 +38,11 @@
 
 .hero-row__text-right {
     padding: 2rem 5rem 0 0;
+
     h1 {
         text-transform: uppercase;
     }
+
     p {
         font-family: 'Chakra-Petch-Regular';
         font-weight: 400;
@@ -44,4 +51,46 @@
 
 .hero-row__img {
     max-width: 400px;
+}
+
+@media screen and (max-width: 426px) {
+    .custom-hero-1 {
+        margin-left: -7rem;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .custom-hero-1 {
+        margin-left: -8rem;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .custom-hero-2 {
+        padding-left: 1.2rem;
+
+    }
+}
+
+
+@media screen and (max-width: 376px) {
+    .custom-hero-2 {
+        margin-left: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .custom-hero-2 {
+        margin-left: 0rem;
+    }
+}
+@media screen and (min-width: 427px) {
+    .custom-hero-2 {
+        margin-left: 5.9rem;
+    }
+}
+@media screen and (min-width: 1023px) {
+    .custom-hero-2 {
+        margin-left: 0;
+    }
 }
