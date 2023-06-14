@@ -3,6 +3,11 @@
     font-family: "Arial", sans-serif;
     margin-bottom: 30px;
     margin-bottom: 0;
+    background-color: #151515;
+  }
+
+  .bg-dark {
+    background-color: #151515 !important;
   }
 
   .container {
@@ -23,16 +28,16 @@
   .navbar-logo {
     display: none;
     justify-content: center;
-    background-color: #212529;
+    background-color: #151515;
     flex: 1;
     img {
-      width: 8rem;
+      width: 12rem;
     }
   }
 
   .logo-out {
     display: flex;
-    border-bottom: 0.3px white solid;
+    border-bottom: 0.3px rgb(191, 189, 189) solid;
   }
 
   .navbar-brand {
@@ -54,18 +59,19 @@
   /* Active link */
   .navbar-nav .nav-link.active {
     color: #fff;
-    background-color: #ee171f;
+    background-color: #ed2224;
     border-radius: 20px;
   }
 
   .btn-logout {
     color: #fff;
-    background-color: #ee171f;
+    background-color: #ed2224;
     border-radius: 20px;
   }
 
   .offcanvas {
     flex-grow: 0;
+    background-color: #151515!important;
   }
 
   @media (max-width: 991px) {
@@ -111,7 +117,10 @@
     .navbar-expand-lg .navbar-collapse {
       justify-content: flex-start;
     }
-
+    
+    li {
+      margin: 0 .8rem;
+    }
     .navbar-brand,
     .offcanvas-body,
     .information {

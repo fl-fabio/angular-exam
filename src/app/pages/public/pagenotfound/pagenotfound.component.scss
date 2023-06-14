@@ -1,10 +1,14 @@
-body{margin-top:20px;}
+
 .cover-background {
     position: relative !important;
     background-size: cover !important;
     overflow: hidden !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
+}
+
+.container {
+    max-height: calc(100vh - 344px);
 }
 .p-0 {
     padding: 0!important;
@@ -16,11 +20,10 @@ section {
 }
 
 .error-page {
-    background-color: #BABABA4A;
-    -webkit-backdrop-filter: blur(9px);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(234,234,235,0.2);
+    background-color: #151515;
+    border: 0.3px solid rgb(191, 189, 189);
     padding: 80px 20px;
+    min-height:100vh;
 }
 .text-center {
     text-align: center!important;
@@ -31,8 +34,14 @@ section {
     font-weight: 600;
 }
 .text-secondary {
-    color: #15395A !important;
+    color: #ed2224!important;
 }
 .mb-4 {
     margin-bottom: 1.5rem!important;
+}
+
+.error-button {
+    color: #fff;
+    background-color: #ed2224;
+    border-radius: 20px;
 }

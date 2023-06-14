@@ -22,7 +22,20 @@
       "email": "simone@gmail.com",
       "role": "",
       "isActive": true,
-      "bookmarks": []
+      "bookmarks": [
+        "1016823"
+      ]
+    },
+    {
+      "id": "Salvuccio",
+      "name": "Salvatore Calanna",
+      "password": "Salvo123",
+      "email": "salvo@gmail.com",
+      "role": "",
+      "isActive": true,
+      "bookmarks": [
+        "1009144"
+      ]
     }
   ]
 }

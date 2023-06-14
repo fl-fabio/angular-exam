@@ -1,0 +1,47 @@
+.section-background {
+    &.img1{
+        background-image: url("../../../../assets/img/hero-page.jpg");
+    }
+    &.img2{
+        background-image: url("../../../../assets/img/captainamerica.jpg");
+    }
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    .section-title {
+      text-align: center;
+      line-height: 60px;
+      font-size: 48px;
+      letter-spacing: 1px;
+    }
+  }
+
+.hero-row {
+    justify-content: space-between;
+}
+
+.hero-row__text-left {
+    padding: 2rem 0 0 5rem;
+    h1 {
+        text-transform: uppercase;
+    }
+    p {
+        font-family: 'Chakra-Petch-Regular';
+        font-weight: 400;
+    }
+}
+
+.hero-row__text-right {
+    padding: 2rem 5rem 0 0;
+    h1 {
+        text-transform: uppercase;
+    }
+    p {
+        font-family: 'Chakra-Petch-Regular';
+        font-weight: 400;
+    }
+}
+
+.hero-row__img {
+    max-width: 400px;
+}
