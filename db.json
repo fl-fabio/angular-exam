@@ -42,6 +42,15 @@
       "role": "",
       "isActive": true,
       "bookmarks": []
+    },
+    {
+      "id": "Markusa",
+      "name": "Marco Borea",
+      "password": "Marco2023",
+      "email": "markus@gmail.com",
+      "role": "",
+      "isActive": true,
+      "bookmarks": []
     }
   ]
 }

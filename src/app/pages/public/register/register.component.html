@@ -1,4 +1,4 @@
-<section style="background-color: rgb(45, 45, 45)">
+<section class="dark">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-11">
@@ -29,7 +29,7 @@
                     </h5>
 
                     <div class="form-outline mb-4">
-                      <label class="form-label">User Name</label>
+                      <label class="form-label">User Name*</label>
                       <input
                         type="text"
                         formControlName="id"
@@ -37,15 +37,15 @@
                         [ngClass] = "{'is-invalid': submitted && (idRequired || idLong)}"
                       />
                       <small class="text-danger" *ngIf="submitted && idRequired">
-                        ID required
+                        User Name required
                       </small>
                       <small class="text-danger" *ngIf="submitted && idLong">
-                        ID must be at least 5 characters long
+                        User Name must be at least 5 characters long
                       </small>
                     </div>
 
                     <div class="form-outline mb-4">
-                      <label class="form-label">Name</label>
+                      <label class="form-label">Name*</label>
                       <input
                         type="text"
                         formControlName="name"
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                      <label class="form-label">Email address</label>
+                      <label class="form-label">Email address*</label>
                       <input
                         type="email"
                         formControlName="email"
@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                      <label class="form-label">Password</label>
+                      <label class="form-label">Password*</label>
                       <input
                         type="password"
                         formControlName="password"
